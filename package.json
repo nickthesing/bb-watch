@@ -1,7 +1,7 @@
 {
   "name": "@nickthesing/bb-watch",
   "version": "0.0.1",
-  "description": "NT runner for automatic watching projects with nodemon.",
+  "description": "BB-watch for automatic watching and running bb-package and bb-import.",
   "main": "src/index.js",
   "scripts": {
     "start": "nodemon src/index.js --exec babel-node",
@@ -11,7 +11,7 @@
   "bin": {
     "bb-watch": "index.js"
   },
-  "author": "Nick Thesing <info@getnick.nl>",
+  "author": "Nick Thesing <nickthesing@gmail.com>",
   "license": "ISC",
   "engines": {
     "node": ">3.0"
@@ -27,8 +27,6 @@
     "@bb-cli/bb-package": "^2.4.0",
     "node-notifier": "^5.1.2",
     "node-sass": "^4.5.3",
-    "nodemon": "^1.11.0",
-    "ping": "^0.2.2",
     "print-message": "^2.1.0",
     "sass-loader": "^6.0.6",
     "tcp-ping": "^0.1.1",
