@@ -9,7 +9,7 @@
     "watch": "nodemon --watch src --exec 'npm run build'"
   },
   "bin": {
-    "bb-watch": "index.js"
+    "bb-watch": "dist/index.js"
   },
   "author": "Nick Thesing <nickthesing@gmail.com>",
   "license": "ISC",
