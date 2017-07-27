@@ -6,6 +6,23 @@ bb-watch is an easy to use watcher for backbase widget, extentions, ui component
 
   - Watching directories for file changes
 
+## Requirements
+
+    - Node >= v6.x
+    - NPM >= v5.x
+
+## Installation
+
+    $ npm install
+
+## Development
+
+    1. Create a `nt` directory at the same level of this repo
+    2. Run `$ npm link` in that directory
+    3. Make your changes to the `bb-watch` module
+    4. Run build `$ npm run build` or `$ npm run watch`
+    5. Re-run `$ nt` in a widget's directory
+
 ## Todo
 
   - TODO: continue on error in file that will be packges
@@ -19,4 +36,4 @@ bb-watch is an easy to use watcher for backbase widget, extentions, ui component
   - TODO: before import check if package is made (?)
   - TODO: can we make it more dynamic?
   - TODO: only load dependencies if needed (eg. don't import notify if you don't use notifications)
-  - TODO: need more comments
+  - TODO: add cli + update documentation
