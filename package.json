@@ -1,5 +1,5 @@
 {
-  "name": "@nickthesing/nt-run",
+  "name": "@nickthesing/bb-watch",
   "version": "0.0.1",
   "description": "NT runner for automatic watching projects with nodemon.",
   "main": "src/index.js",
