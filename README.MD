@@ -8,19 +8,14 @@ bb-watch is an easy to use watcher for backbase widget, extentions, ui component
 
 ## Todo
 
-// TODO: continue on error in file
-// TODO: make sass option only work for theme
-// TODO: create own 
-// TODO: silence (no logs)
-// TODO: disable notifications
-// TODO: make extensions able to set through option
-// TODO: way to specify port? 
-// TODO: fix notify icon path
-// TODO: app start message
-// TODO: timing
-// TODO: before import check if package is made (?)
-// TODO: cleanup dubble names
-// TODO: build success message
-// TODO: build failed message (can we handle this?)
-// TODO: can we make it more dynamic?
-// TODO: only load dependencies if needed
+  - TODO: continue on error in file that will be packges
+  - TODO: make sass option only work for theme (when in theme- folder)
+  - TODO: silence (no logs or any output?)
+  - TODO: disable desktop notifications
+  - TODO: make extensions able to set through option
+  - TODO: way to specify port? 
+  - TODO: fix notify icon path
+  - TODO: save timing to csv file if prefer (for fun :p)
+  - TODO: before import check if package is made (?)
+  - TODO: can we make it more dynamic?
+  - TODO: only load dependencies if needed (eg. don't import notify if you don't use notifications)
