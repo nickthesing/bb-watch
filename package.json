@@ -27,10 +27,11 @@
     "@bb-cli/bb-package": "^2.4.0",
     "node-notifier": "^5.1.2",
     "node-sass": "^4.5.3",
+    "path": "^0.12.7",
     "print-message": "^2.1.0",
     "sass-loader": "^6.0.6",
     "tcp-ping": "^0.1.1",
     "watch": "^1.0.2",
-    "path": "^0.12.7"
+    "webpack": "2.7.0"
   }
 }
