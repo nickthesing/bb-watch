@@ -5,13 +5,16 @@ import path from 'path';
 import config from '../config';
 import { parseHrtimeToSeconds } from './helpers';
 
+/**
+ * Easier way to use console.log
+ *
+ */
 let _log = console.log;
-
-
 
 /**
  * Show welcome message in console
  *
+ * @return {void}
  */
 const welcome = () => {
 	// clear out console 
@@ -24,21 +27,36 @@ const welcome = () => {
 /**
  * Log message to console
  *
- * @type {string}
+ * @type {string} what
  */
 const log = (what) => {
 	_log(what);
 }
 
+/**
+ * Displays offline message when portalserver is not running
+ *
+ * @return {void}
+ */
 const offline = () => {
 	welcome();
 	log(chalk.red('\n Error: portalserver is not running on localhost:7777.. aborting..\n'));
 }
 
+/**
+ * Import start message shown when import is started
+ *
+ * @return {void}
+ */
 const importStart = () => {
 	log(chalk.bold.yellow('\n --- Starting Import:'));
 }
 
+/**
+ * Import end message shown when import is done
+ *
+ * @return {void}
+ */
 const importEnd = (packageTime, importTime) => {
 	let packageTimeInSeconds = parseHrtimeToSeconds(process.hrtime(packageTime));
 	let importTimeInSeconds = parseHrtimeToSeconds(process.hrtime(importTime));
@@ -57,14 +75,29 @@ const error = (msg) => {
 	_log(chalk.red(msg));
 }
 
+/**
+ * Start message when watcher is watching
+ *
+ * @return {void}
+ */
 const start = () => {
 	_log(chalk.bold.green(config.messages.START));
 }	
 
+/**
+ * Message when watcher detecs a change
+ *
+ * @return {void}
+ */
 const changed = (fileName) => {
 	_log(chalk.bold.yellow(config.messages.RESTART), chalk.bold.black(`[${fileName.split('/').pop()}]`));
 }
 
+/**
+ * Notify function to show desktop notification
+ *
+ * @type {what}
+ */
 const notify = (msg, type = 'success') => {
 	notifier.notify({
 		title: 'Backbase Watch',

@@ -5,6 +5,7 @@ import Notify from './Notify';
 /**
  * Verify that there is a model.xml present
  *
+ * @return {boolean}
  */
 const model = () => {
  	if ( ! fs.existsSync(process.cwd() + '/model.xml') ) {
@@ -18,6 +19,7 @@ const model = () => {
 /**
  * Verify is localhost:7777 is running
  *
+ * @return {void}
  */
 const online = () => {
 	ping.probe('127.0.0.1', 7777, (err, available) => {

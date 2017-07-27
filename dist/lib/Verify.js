@@ -17,6 +17,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 /**
  * Verify that there is a model.xml present
  *
+ * @return {array} hrtime
  */
 var model = function model() {
 	if (!_fs2.default.existsSync(process.cwd() + '/model.xml')) {

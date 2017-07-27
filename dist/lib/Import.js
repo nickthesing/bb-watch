@@ -25,11 +25,25 @@ var Import = function () {
 
 	_createClass(Import, [{
 		key: 'doImport',
+
+
+		/**
+   * Import package.zip file to localhost enviroment
+   *
+   * @return {Promise} 
+   */
 		value: function doImport() {
 			this.startTime = process.hrtime();
 			(0, _Notify.importStart)();
 			return (0, _bbImport2.default)(_config.packageName, { port: _config.port });
 		}
+
+		/**
+   * Get import startingpage for showing total duration
+   *
+   * @return {array} hrtime
+   */
+
 	}, {
 		key: 'getTime',
 		value: function getTime() {
