@@ -9,6 +9,7 @@ bb-watch is an easy to use watcher for backbase widget, extentions, ui component
 ## Todo
 
   - TODO: continue on error in file that will be packges
+  - TODO: add delay when saving to fast (?) 1 second option
   - TODO: make sass option only work for theme (when in theme- folder)
   - TODO: silence (no logs or any output?)
   - TODO: disable desktop notifications
