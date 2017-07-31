@@ -18,5 +18,6 @@ bb-watch is an easy to use watcher for backbase widget, extentions, ui component
   - TODO: save timing to csv file if prefer (for fun :p)
   - TODO: before import check if package is made (?)
   - TODO: can we make it more dynamic?
+  - TODO: prebuilt items should use prebuilt flag (otherwise package will throw an error)
   - TODO: only load dependencies if needed (eg. don't import notify if you don't use notifications)
   - TODO: need more comments
