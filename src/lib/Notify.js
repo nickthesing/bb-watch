@@ -71,7 +71,7 @@ const importEnd = (packageTime, importTime) => {
  * @type {string} msg
  */
 const error = (msg) => {
-	msg = '\n--- Backbase Wachter Error: ' + msg;
+	msg = '\n--- Backbase Watcher Error: ' + msg;
 	_log(chalk.red(msg));
 }
 
