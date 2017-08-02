@@ -19,6 +19,12 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 var Package = function () {
+
+	/**
+  * Constructor to setup options
+  *
+  * @return {void}
+  */
 	function Package() {
 		_classCallCheck(this, Package);
 
@@ -30,12 +36,26 @@ var Package = function () {
 		};
 	}
 
+	/**
+  * Handles the packageProject function
+  *
+  * @return {Promise}
+  */
+
+
 	_createClass(Package, [{
 		key: 'createPackage',
 		value: function createPackage() {
 			this.startTime = process.hrtime();
 			return (0, _project2.default)(this.sourceFolder, this.options);
 		}
+
+		/**
+   * Get package startingpage for showing total duration
+   *
+   * @return {array} hrtime
+   */
+
 	}, {
 		key: 'getTime',
 		value: function getTime() {

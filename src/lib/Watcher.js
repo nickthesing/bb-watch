@@ -10,6 +10,11 @@ let monitor;
 let _package = new Package();
 let _import = new Import();
 
+/**
+ * Check requirements and start watcher
+ *
+ * @return {void}
+ */
 const Watcher = () => {
 
 	checkRequirements();
@@ -18,12 +23,22 @@ const Watcher = () => {
 	start();
 }
 
+/**
+ * Show welcome notification and create watcher
+ *
+ * @return {void}
+ */
 const start = () => {
 	Notify.welcome();
 
 	createWatcher();
 }
 
+/**
+ * Create options and start watcher monitor
+ *
+ * @return {void}
+ */
 const createWatcher = () => {
 	let options = {
 		filter: filterExtentions, 
@@ -31,14 +46,19 @@ const createWatcher = () => {
 		wait: 2
 	};
 
-		// create the actual monitor
-		watch.createMonitor(
-			process.cwd(),
-			options,
-			(monitor) => watcherCallback(monitor)
-		);
+	// create the actual monitor
+	watch.createMonitor(
+		process.cwd(),
+		options,
+		(monitor) => watcherCallback(monitor)
+	);
 }
 
+/**
+ * Callback for watcher monitor
+ *
+ * @return {void}
+ */
 const watcherCallback = (_monitor) => {
 		monitor = _monitor;
 		createHandlers();
@@ -47,6 +67,11 @@ const watcherCallback = (_monitor) => {
 		Notify.start();
 }
 
+/**
+ * Create handlers for monitor
+ *
+ * @return {void}
+ */
 const createHandlers = () => {
 	monitor.on("changed", (file, curr, prev) => {
 		Notify.changed(file);
@@ -55,6 +80,11 @@ const createHandlers = () => {
 	});
 }
 
+/**
+ * Run package and import
+ *
+ * @return {void}
+ */
 const runPackageAndImport = () => {
 	_package.createPackage()
 		.then(() => _import.doImport()
@@ -62,11 +92,21 @@ const runPackageAndImport = () => {
 			.catch((error) => notifyError(error)));
 }
 
+/**
+ * Notify and log error message
+ *
+ * @return {void}
+ */
 const notifyError = (error) => {
 	Notify.log(error);
 	Notify.notify('ERROR: Importing package failed', 'fail');
 }
 
+/**
+ * Notify and log success message
+ *
+ * @return {vois}
+ */
 const notifySuccess = () => {
 	let timing = [
 		_package.getTime(),

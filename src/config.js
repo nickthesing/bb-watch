@@ -12,6 +12,11 @@ const debug = true;
  */
 const packageName = 'package.zip';
 
+/**
+ * Exclude exententions for watcher
+ *
+ * @type {array} with {strings}
+ */
 const excludeExtentions = ['.zip'];
 
 /**
@@ -32,8 +37,18 @@ const messages = {
 	"RESTART": "\n --- File change detected, running again..."
 };
 
+/**
+ * Port used for import
+ *
+ * @type {string}
+ */
 const port = '7777';
 
+/**
+ * Welcome message show when watcher is started
+ *
+ * @type {array}
+ */
 const welcome = [
 	"Hello!",
     "Simple watcher to run bb-package && bb-import.",

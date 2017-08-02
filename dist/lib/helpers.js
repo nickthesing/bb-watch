@@ -11,6 +11,7 @@ var _config = require('../config');
  * Parse Hrtime instance to miliseconds
  *
  * @type {object} hrtime	
+ * @return {string} seconds	
  */
 var parseHrtimeToSeconds = function parseHrtimeToSeconds(hrtime) {
   return (hrtime[0] + hrtime[1] / 1e9).toFixed(3);
@@ -31,6 +32,7 @@ var getExtension = function getExtension(fileName) {
  * Filter out certain extentions
  *
  * @param {string} fileName
+ * @return {void}
  */
 var filterExtentions = function filterExtentions(fileName) {
   if (_config.excludeExtentions.indexOf(getExtension(fileName)) == -1) return fileName;
