@@ -90,7 +90,7 @@ var importEnd = function importEnd(packageTime, importTime) {
  * @type {string} msg
  */
 var error = function error(msg) {
-  msg = '\n--- Backbase Wachter Error: ' + msg;
+  msg = '\n--- Backbase Watcher Error: ' + msg;
   _log(_chalk2.default.red(msg));
 };
 
