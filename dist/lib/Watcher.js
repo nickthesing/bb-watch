@@ -33,6 +33,11 @@ var monitor = void 0;
 var _package = new _Package2.default();
 var _import = new _Import2.default();
 
+/**
+ * Check requirements and start watcher
+ *
+ * @return {void}
+ */
 var Watcher = function Watcher() {
 
 	checkRequirements();
@@ -41,12 +46,22 @@ var Watcher = function Watcher() {
 	start();
 };
 
+/**
+ * Show welcome notification and create watcher
+ *
+ * @return {void}
+ */
 var start = function start() {
 	_Notify2.default.welcome();
 
 	createWatcher();
 };
 
+/**
+ * Create options and start watcher monitor
+ *
+ * @return {void}
+ */
 var createWatcher = function createWatcher() {
 	var options = {
 		filter: _helpers.filterExtentions,
@@ -60,6 +75,11 @@ var createWatcher = function createWatcher() {
 	});
 };
 
+/**
+ * Callback for watcher monitor
+ *
+ * @return {void}
+ */
 var watcherCallback = function watcherCallback(_monitor) {
 	monitor = _monitor;
 	createHandlers();
@@ -68,6 +88,11 @@ var watcherCallback = function watcherCallback(_monitor) {
 	_Notify2.default.start();
 };
 
+/**
+ * Create handlers for monitor
+ *
+ * @return {void}
+ */
 var createHandlers = function createHandlers() {
 	monitor.on("changed", function (file, curr, prev) {
 		_Notify2.default.changed(file);
@@ -76,6 +101,11 @@ var createHandlers = function createHandlers() {
 	});
 };
 
+/**
+ * Run package and import
+ *
+ * @return {void}
+ */
 var runPackageAndImport = function runPackageAndImport() {
 	_package.createPackage().then(function () {
 		return _import.doImport().then(function () {
@@ -86,11 +116,21 @@ var runPackageAndImport = function runPackageAndImport() {
 	});
 };
 
+/**
+ * Notify and log error message
+ *
+ * @return {void}
+ */
 var notifyError = function notifyError(error) {
 	_Notify2.default.log(error);
 	_Notify2.default.notify('ERROR: Importing package failed', 'fail');
 };
 
+/**
+ * Notify and log success message
+ *
+ * @return {vois}
+ */
 var notifySuccess = function notifySuccess() {
 	var timing = [_package.getTime(), _import.getTime()];
 

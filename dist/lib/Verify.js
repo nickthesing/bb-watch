@@ -17,7 +17,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 /**
  * Verify that there is a model.xml present
  *
- * @return {array} hrtime
+ * @return {boolean}
  */
 var model = function model() {
 	if (!_fs2.default.existsSync(process.cwd() + '/model.xml')) {
@@ -31,6 +31,7 @@ var model = function model() {
 /**
  * Verify is localhost:7777 is running
  *
+ * @return {void}
  */
 var online = function online() {
 	_tcpPing2.default.probe('127.0.0.1', 7777, function (err, available) {
