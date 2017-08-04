@@ -1,6 +1,6 @@
 {
   "name": "@nickthesing/bb-watch",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "BB-watch for automatic watching and running bb-package and bb-import.",
   "main": "src/index.js",
   "scripts": {
