@@ -32,7 +32,7 @@ var Package = function () {
 		this.options = {
 			output: _config2.default.packageName,
 			excludeDefault: true,
-			buildPlugins: 'sass'
+			buildPlugins: 'sass-fast'
 		};
 	}
 
