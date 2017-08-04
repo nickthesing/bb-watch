@@ -47,7 +47,7 @@ var messages = {
  *
  * @type {string}
  */
-var port = '7777';
+var port = 7777;
 
 /**
  * Welcome message show when watcher is started

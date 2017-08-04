@@ -29,12 +29,12 @@ var model = function model() {
 };
 
 /**
- * Verify is localhost:7777 is running
+ * Verify is localhost:{Config.port} is running
  *
  * @return {void}
  */
 var online = function online() {
-	_tcpPing2.default.probe('127.0.0.1', 7777, function (err, available) {
+	_tcpPing2.default.probe('127.0.0.1', Config.port, function (err, available) {
 		if (!available) {
 			_Notify2.default.offline();
 			process.exit();

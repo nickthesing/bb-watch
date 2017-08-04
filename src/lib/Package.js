@@ -1,5 +1,4 @@
 import packageProject from '@bb-cli/bb-package/dist/project';
-import config from '../config';
 
 class Package {
 	startTime;
@@ -12,7 +11,6 @@ class Package {
 	constructor() {
 		this.sourceFolder = ['.'];
 		this.options = {
-			output: config.packageName,
 			excludeDefault: true,
 			buildPlugins: 'sass'
 		}
@@ -24,6 +22,8 @@ class Package {
 	 * @return {Promise}
 	 */
 	createPackage() {
+		this.options.output = Config.packageName;
+
 		this.startTime = process.hrtime();
 		return packageProject(this.sourceFolder, this.options);
 	}

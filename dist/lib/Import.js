@@ -10,8 +10,6 @@ var _bbImport = require('@bb-cli/bb-import');
 
 var _bbImport2 = _interopRequireDefault(_bbImport);
 
-var _config = require('../config');
-
 var _Notify = require('./Notify');
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -35,7 +33,7 @@ var Import = function () {
 		value: function doImport() {
 			this.startTime = process.hrtime();
 			(0, _Notify.importStart)();
-			return (0, _bbImport2.default)(_config.packageName, { port: _config.port });
+			return (0, _bbImport2.default)(Config.packageName, { port: Config.port });
 		}
 
 		/**

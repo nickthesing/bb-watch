@@ -4,6 +4,7 @@ import Notify from './Notify';
 import { filterExtentions } from './helpers';
 import Package from './Package';
 import Import from './Import';
+import defaultConfig from '../config';
 
 let monitor;
 
@@ -15,7 +16,10 @@ let _import = new Import();
  *
  * @return {void}
  */
-const Watcher = () => {
+const Watcher = (config) => {
+
+	// create global config
+	global.Config = ( config ) ?  Object.assign({}, defaultConfig, config) : defaultConfig;
 
 	checkRequirements();
 

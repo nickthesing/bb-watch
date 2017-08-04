@@ -16,10 +16,6 @@ var _path = require('path');
 
 var _path2 = _interopRequireDefault(_path);
 
-var _config = require('../config');
-
-var _config2 = _interopRequireDefault(_config);
-
 var _helpers = require('./helpers');
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -40,7 +36,7 @@ var welcome = function welcome() {
   process.stdout.write('\x1Bc');
 
   // print message to console
-  (0, _printMessage2.default)(_config2.default.welcome, { borderColor: 'gray' });
+  (0, _printMessage2.default)(Config.welcome, { borderColor: 'gray' });
 };
 
 /**
@@ -100,7 +96,7 @@ var error = function error(msg) {
  * @return {void}
  */
 var start = function start() {
-  _log(_chalk2.default.bold.green(_config2.default.messages.START));
+  _log(_chalk2.default.bold.green(Config.messages.START));
 };
 
 /**
@@ -109,7 +105,7 @@ var start = function start() {
  * @return {void}
  */
 var changed = function changed(fileName) {
-  _log(_chalk2.default.bold.yellow(_config2.default.messages.RESTART), _chalk2.default.bold.black('[' + fileName.split('/').pop() + ']'));
+  _log(_chalk2.default.bold.yellow(Config.messages.RESTART), _chalk2.default.bold.black('[' + fileName.split('/').pop() + ']'));
 };
 
 /**
@@ -120,6 +116,7 @@ var changed = function changed(fileName) {
 var notify = function notify(msg) {
   var type = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'success';
 
+  if (!Config.notifications) return;
   _nodeNotifier2.default.notify({
     title: 'Backbase Watch',
     message: msg,

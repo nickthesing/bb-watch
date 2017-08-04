@@ -26,6 +26,10 @@ var _Import = require('./Import');
 
 var _Import2 = _interopRequireDefault(_Import);
 
+var _config = require('../config');
+
+var _config2 = _interopRequireDefault(_config);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var monitor = void 0;
@@ -38,7 +42,10 @@ var _import = new _Import2.default();
  *
  * @return {void}
  */
-var Watcher = function Watcher() {
+var Watcher = function Watcher(config) {
+
+	// create global config
+	global.Config = config ? Object.assign({}, _config2.default, config) : _config2.default;
 
 	checkRequirements();
 
