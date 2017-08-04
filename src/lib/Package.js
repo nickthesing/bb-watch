@@ -14,7 +14,7 @@ class Package {
 		this.options = {
 			output: config.packageName,
 			excludeDefault: true,
-			buildPlugins: 'sass'
+			buildPlugins: 'sass-fast'
 		}
 	}
 
