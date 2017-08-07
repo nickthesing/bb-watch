@@ -14,6 +14,11 @@ class Package {
 			excludeDefault: true,
 			buildPlugins: 'sass'
 		}
+
+		// if watching prebuilt item:
+		if ( process.cwd().indexOf('prebuilt') !== -1 ) {
+			this.options.builtDirs = [process.cwd()];
+		}
 	}
 
 	/**
