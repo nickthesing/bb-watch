@@ -10,10 +10,6 @@ var _project = require('@bb-cli/bb-package/dist/project');
 
 var _project2 = _interopRequireDefault(_project);
 
-var _config = require('../config');
-
-var _config2 = _interopRequireDefault(_config);
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -30,7 +26,6 @@ var Package = function () {
 
 		this.sourceFolder = ['.'];
 		this.options = {
-			output: _config2.default.packageName,
 			excludeDefault: true,
 			buildPlugins: 'sass'
 		};
@@ -46,6 +41,8 @@ var Package = function () {
 	_createClass(Package, [{
 		key: 'createPackage',
 		value: function createPackage() {
+			this.options.output = Config.packageName;
+
 			this.startTime = process.hrtime();
 			return (0, _project2.default)(this.sourceFolder, this.options);
 		}

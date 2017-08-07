@@ -3,10 +3,6 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.parseHrtimeToSeconds = exports.filterExtentions = undefined;
-
-var _config = require('../config');
-
 /**
  * Parse Hrtime instance to miliseconds
  *
@@ -35,7 +31,7 @@ var getExtension = function getExtension(fileName) {
  * @return {void}
  */
 var filterExtentions = function filterExtentions(fileName) {
-  if (_config.excludeExtentions.indexOf(getExtension(fileName)) == -1) return fileName;
+  if (Config.excludeExtentions.indexOf(getExtension(fileName)) == -1) return fileName;
 };
 
 exports.filterExtentions = filterExtentions;

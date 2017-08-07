@@ -1,5 +1,4 @@
 import packageImport from '@bb-cli/bb-import';
-import { packageName, port } from '../config';
 import { importStart } from './Notify';
 
 class Import {
@@ -13,7 +12,7 @@ class Import {
 	doImport() {
 		this.startTime = process.hrtime();
 		importStart();
-		return packageImport(packageName, {port: port});
+		return packageImport(Config.packageName, {port: Config.port});
 	}
 
 	/**

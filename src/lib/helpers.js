@@ -1,5 +1,3 @@
-import { excludeExtentions } from '../config';
-
 /**
  * Parse Hrtime instance to miliseconds
  *
@@ -28,7 +26,7 @@ const getExtension = (fileName) => {
  * @return {void}
  */
 const filterExtentions = (fileName) => {
-	if ( excludeExtentions.indexOf(getExtension(fileName)) == -1 ) return fileName;
+	if ( Config.excludeExtentions.indexOf(getExtension(fileName)) == -1 ) return fileName;
 }
 
 export {

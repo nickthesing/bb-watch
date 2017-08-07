@@ -42,7 +42,7 @@ const messages = {
  *
  * @type {string}
  */
-const port = '7777';
+const port = 7777;
 
 /**
  * Welcome message show when watcher is started

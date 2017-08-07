@@ -17,12 +17,12 @@ const model = () => {
 }
 
 /**
- * Verify is localhost:7777 is running
+ * Verify is localhost:{Config.port} is running
  *
  * @return {void}
  */
 const online = () => {
-	ping.probe('127.0.0.1', 7777, (err, available) => {
+	ping.probe('127.0.0.1', Config.port, (err, available) => {
 		if ( ! available ) { 
 			Notify.offline();
 			process.exit();

@@ -2,7 +2,6 @@ import chalk from 'chalk';
 import printMessage from 'print-message';
 import notifier from 'node-notifier';
 import path from 'path';
-import config from '../config';
 import { parseHrtimeToSeconds } from './helpers';
 
 /**
@@ -21,7 +20,7 @@ const welcome = () => {
 	process.stdout.write('\x1Bc'); 
 
 	// print message to console
-	printMessage(config.welcome, {borderColor: 'gray'});
+	printMessage(Config.welcome, {borderColor: 'gray'});
 }
 
 /**
@@ -81,7 +80,7 @@ const error = (msg) => {
  * @return {void}
  */
 const start = () => {
-	_log(chalk.bold.green(config.messages.START));
+	_log(chalk.bold.green(Config.messages.START));
 }	
 
 /**
@@ -90,7 +89,7 @@ const start = () => {
  * @return {void}
  */
 const changed = (fileName) => {
-	_log(chalk.bold.yellow(config.messages.RESTART), chalk.bold.black(`[${fileName.split('/').pop()}]`));
+	_log(chalk.bold.yellow(Config.messages.RESTART), chalk.bold.black(`[${fileName.split('/').pop()}]`));
 }
 
 /**
@@ -99,6 +98,7 @@ const changed = (fileName) => {
  * @type {what}
  */
 const notify = (msg, type = 'success') => {
+	if ( ! Config.notifications ) return;
 	notifier.notify({
 		title: 'Backbase Watch',
 		message: msg,
