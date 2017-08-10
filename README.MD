@@ -1,4 +1,5 @@
-# bb-watch [![Build Status](https://travis-ci.org/nickthesing/bb-watch.svg?branch=master)](https://travis-ci.org/nickthesing/bb-watch)
+# bb-watch [![Build Status](https://travis-ci.org/nickthesing/bb-watch.svg?branch=master)](https://travis-ci.org/nickthesing/bb-watch) [![Dependency Status](https://gemnasium.com/badges/github.com/nickthesing/bb-watch.svg)](https://gemnasium.com/github.com/nickthesing/bb-watch)
+
 
 bb-watch is an easy to use watcher for backbase widget, extentions, ui components or themes.
 
