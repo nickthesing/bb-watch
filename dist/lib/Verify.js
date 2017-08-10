@@ -24,14 +24,19 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
  * @return {boolean}
  */
 var model = function model() {
-  // only execute model.xml-check if not inside the src directory
-  if (_path2.default.basename(process.cwd()) !== 'src' && !_fs2.default.existsSync(process.cwd() + '/model.xml')) {
-    _Notify2.default.welcome();
-    _Notify2.default.error('model.xml not found. Are you running the watcher from the correct folder? \n');
-    return false;
-  }
+	// only execute model.xml-check if not inside the src or prebuilt directory
+	var basename = _path2.default.basename(process.cwd());
+	if (basename == 'src' || basename == 'prebuilt') {
+		return true;
+	}
 
-  return true;
+	if (!_fs2.default.existsSync(process.cwd() + '/model.xml')) {
+		_Notify2.default.welcome();
+		_Notify2.default.error('model.xml not found. Are you running the watcher from the correct folder? \n');
+		return false;
+	}
+
+	return true;
 };
 
 /**
@@ -40,15 +45,15 @@ var model = function model() {
  * @return {void}
  */
 var online = function online() {
-  _tcpPing2.default.probe('127.0.0.1', Config.port, function (err, available) {
-    if (!available) {
-      _Notify2.default.offline();
-      process.exit();
-    }
-  });
+	_tcpPing2.default.probe('127.0.0.1', Config.port, function (err, available) {
+		if (!available) {
+			_Notify2.default.offline();
+			process.exit();
+		}
+	});
 };
 
 module.exports = {
-  model: model,
-  online: online
+	model: model,
+	online: online
 };

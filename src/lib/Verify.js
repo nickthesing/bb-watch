@@ -9,15 +9,17 @@ import Notify from './Notify';
  * @return {boolean}
  */
 const model = () => {
-	// only execute model.xml-check if not inside the src directory
-  if (
-    path.basename(process.cwd()) !== 'src' &&
-  	! fs.existsSync(process.cwd() + '/model.xml')
-	) {
-    Notify.welcome();
-    Notify.error('model.xml not found. Are you running the watcher from the correct folder? \n');
-    return false;
-  }
+	// only execute model.xml-check if not inside the src or prebuilt directory
+	let basename = path.basename(process.cwd());
+	if ( basename == 'src' || basename == 'prebuilt' ) {
+		return true;
+	}
+
+	if ( ! fs.existsSync(process.cwd() + '/model.xml') ) {
+		Notify.welcome();
+		Notify.error('model.xml not found. Are you running the watcher from the correct folder? \n');
+		return false;
+	}
 
 	return true;
 }
