@@ -1,4 +1,5 @@
 import fs from 'fs';
+import path from 'path';
 import ping from 'tcp-ping';
 import Notify from './Notify';
 
@@ -8,11 +9,16 @@ import Notify from './Notify';
  * @return {boolean}
  */
 const model = () => {
- 	if ( ! fs.existsSync(process.cwd() + '/model.xml') ) {
- 		Notify.welcome();
-		Notify.error('model.xml not found. Are you running the watcher from the correct folder? \n');
-		return false;
-	}
+	// only execute model.xml-check if not inside the src directory
+  if (
+    path.basename(process.cwd()) !== 'src' &&
+  	! fs.existsSync(process.cwd() + '/model.xml')
+	) {
+    Notify.welcome();
+    Notify.error('model.xml not found. Are you running the watcher from the correct folder? \n');
+    return false;
+  }
+
 	return true;
 }
 

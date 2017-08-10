@@ -5,6 +5,8 @@ import { filterExtentions } from './helpers';
 import Package from './Package';
 import Import from './Import';
 import defaultConfig from '../config';
+import path from 'path';
+import fs from 'fs';
 
 let monitor;
 
@@ -80,8 +82,26 @@ const createHandlers = () => {
 	monitor.on("changed", (file, curr, prev) => {
 		Notify.changed(file);
 
-		runPackageAndImport();
+		// make sure we pass a widget directory to the package & import command
+    const fileDirectory = path.parse(file).dir;
+    const widgetDirectory = traverseUntilModelIsFound(fileDirectory);
+
+		runPackageAndImport(widgetDirectory);
 	});
+}
+
+/**
+ * Traverses a directory all the way up until a directory contains a model.xml file
+ *
+ * @return {string} path for the directory that contains a model.xml file
+ */
+const traverseUntilModelIsFound = (dir) => {
+  const modelFile =
+    fs
+      .readdirSync(dir) // can be improved upon by making it async
+      .find(file => file === 'model.xml');
+
+  return modelFile ? dir : traverseUntilModelIsFound(path.join(dir, '..'));
 }
 
 /**
@@ -89,11 +109,12 @@ const createHandlers = () => {
  *
  * @return {void}
  */
-const runPackageAndImport = () => {
-	_package.createPackage()
-		.then(() => _import.doImport()
-			.then(() => notifySuccess())
-			.catch((error) => notifyError(error)));
+const runPackageAndImport = widgetDirectory => {
+	_package
+		.createPackage(widgetDirectory)
+		.then(() => _import.doImport())
+		.then(() => notifySuccess())
+		.catch(error => notifyError(error));
 }
 
 /**
