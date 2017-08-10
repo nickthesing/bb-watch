@@ -1,7 +1,7 @@
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
-	value: true
+  value: true
 });
 
 var _watch = require('watch');
@@ -30,6 +30,14 @@ var _config = require('../config');
 
 var _config2 = _interopRequireDefault(_config);
 
+var _path = require('path');
+
+var _path2 = _interopRequireDefault(_path);
+
+var _fs = require('fs');
+
+var _fs2 = _interopRequireDefault(_fs);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var monitor = void 0;
@@ -44,13 +52,13 @@ var _import = new _Import2.default();
  */
 var Watcher = function Watcher(config) {
 
-	// create global config
-	global.Config = config ? Object.assign({}, _config2.default, config) : _config2.default;
+  // create global config
+  global.Config = config ? Object.assign({}, _config2.default, config) : _config2.default;
 
-	checkRequirements();
+  checkRequirements();
 
-	// create watcher
-	start();
+  // create watcher
+  start();
 };
 
 /**
@@ -59,9 +67,9 @@ var Watcher = function Watcher(config) {
  * @return {void}
  */
 var start = function start() {
-	_Notify2.default.welcome();
+  _Notify2.default.welcome();
 
-	createWatcher();
+  createWatcher();
 };
 
 /**
@@ -70,16 +78,16 @@ var start = function start() {
  * @return {void}
  */
 var createWatcher = function createWatcher() {
-	var options = {
-		filter: _helpers.filterExtentions,
-		interval: 1, // 1 second
-		wait: 2
-	};
+  var options = {
+    filter: _helpers.filterExtentions,
+    interval: 1, // 1 second
+    wait: 2
+  };
 
-	// create the actual monitor
-	_watch2.default.createMonitor(process.cwd(), options, function (monitor) {
-		return watcherCallback(monitor);
-	});
+  // create the actual monitor
+  _watch2.default.createMonitor(process.cwd(), options, function (monitor) {
+    return watcherCallback(monitor);
+  });
 };
 
 /**
@@ -88,11 +96,11 @@ var createWatcher = function createWatcher() {
  * @return {void}
  */
 var watcherCallback = function watcherCallback(_monitor) {
-	monitor = _monitor;
-	createHandlers();
+  monitor = _monitor;
+  createHandlers();
 
-	// notify that everything is setup.
-	_Notify2.default.start();
+  // notify that everything is setup.
+  _Notify2.default.start();
 };
 
 /**
@@ -101,11 +109,29 @@ var watcherCallback = function watcherCallback(_monitor) {
  * @return {void}
  */
 var createHandlers = function createHandlers() {
-	monitor.on("changed", function (file, curr, prev) {
-		_Notify2.default.changed(file);
+  monitor.on("changed", function (file, curr, prev) {
+    _Notify2.default.changed(file);
 
-		runPackageAndImport();
-	});
+    // make sure we pass a widget directory to the package & import command
+    var fileDirectory = _path2.default.parse(file).dir;
+    var widgetDirectory = traverseUntilModelIsFound(fileDirectory);
+
+    runPackageAndImport(widgetDirectory);
+  });
+};
+
+/**
+ * Traverses a directory all the way up until a directory contains a model.xml file
+ *
+ * @return {string} path for the directory that contains a model.xml file
+ */
+var traverseUntilModelIsFound = function traverseUntilModelIsFound(dir) {
+  var modelFile = _fs2.default.readdirSync(dir) // can be improved upon by making it async
+  .find(function (file) {
+    return file === 'model.xml';
+  });
+
+  return modelFile ? dir : traverseUntilModelIsFound(_path2.default.join(dir, '..'));
 };
 
 /**
@@ -113,14 +139,14 @@ var createHandlers = function createHandlers() {
  *
  * @return {void}
  */
-var runPackageAndImport = function runPackageAndImport() {
-	_package.createPackage().then(function () {
-		return _import.doImport().then(function () {
-			return notifySuccess();
-		}).catch(function (error) {
-			return notifyError(error);
-		});
-	});
+var runPackageAndImport = function runPackageAndImport(widgetDirectory) {
+  _package.createPackage(widgetDirectory).then(function () {
+    return _import.doImport();
+  }).then(function () {
+    return notifySuccess();
+  }).catch(function (error) {
+    return notifyError(error);
+  });
 };
 
 /**
@@ -129,8 +155,8 @@ var runPackageAndImport = function runPackageAndImport() {
  * @return {void}
  */
 var notifyError = function notifyError(error) {
-	_Notify2.default.log(error);
-	_Notify2.default.notify('ERROR: Importing package failed', 'fail');
+  _Notify2.default.log(error);
+  _Notify2.default.notify('ERROR: Importing package failed', 'fail');
 };
 
 /**
@@ -139,10 +165,10 @@ var notifyError = function notifyError(error) {
  * @return {vois}
  */
 var notifySuccess = function notifySuccess() {
-	var timing = [_package.getTime(), _import.getTime()];
+  var timing = [_package.getTime(), _import.getTime()];
 
-	_Notify2.default.importEnd.apply(_Notify2.default, timing);
-	_Notify2.default.notify('Successfully packaged and imported');
+  _Notify2.default.importEnd.apply(_Notify2.default, timing);
+  _Notify2.default.notify('Successfully packaged and imported');
 };
 
 /**
@@ -150,11 +176,11 @@ var notifySuccess = function notifySuccess() {
  *
  */
 var checkRequirements = function checkRequirements() {
-	if (!_Verify2.default.model()) {
-		process.exit();
-	}
+  if (!_Verify2.default.model()) {
+    process.exit();
+  }
 
-	_Verify2.default.online();
+  _Verify2.default.online();
 };
 
 exports.default = Watcher;

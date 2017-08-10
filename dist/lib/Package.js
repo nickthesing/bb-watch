@@ -28,11 +28,7 @@ var Package = function () {
 		this.options = {
 			excludeDefault: true,
 			buildPlugins: 'sass'
-
-			// if watching prebuilt item:
-		};if (process.cwd().indexOf('prebuilt') !== -1) {
-			this.options.builtDirs = [process.cwd()];
-		}
+		};
 	}
 
 	/**
@@ -44,7 +40,13 @@ var Package = function () {
 
 	_createClass(Package, [{
 		key: 'createPackage',
-		value: function createPackage() {
+		value: function createPackage(directory) {
+			// if watching prebuilt item:
+			if (directory.indexOf('prebuilt') !== -1) {
+				this.options.builtDirs = [directory];
+			}
+
+			this.sourceFolder = [directory];
 			this.options.output = Config.packageName;
 
 			this.startTime = process.hrtime();
