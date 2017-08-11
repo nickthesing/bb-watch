@@ -26,7 +26,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var model = function model() {
 	// only execute model.xml-check if not inside the src or prebuilt directory
 	var basename = _path2.default.basename(process.cwd());
-	if (basename == 'src' || basename == 'prebuilt') {
+	if (basename === 'src' || basename === 'prebuilt') {
 		return true;
 	}
 
