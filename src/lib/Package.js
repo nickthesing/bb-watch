@@ -14,11 +14,6 @@ class Package {
 			excludeDefault: true,
 			buildPlugins: 'sass'
 		}
-
-		// if watching prebuilt item:
-		if ( process.cwd().indexOf('prebuilt') !== -1 ) {
-			this.options.builtDirs = [process.cwd()];
-		}
 	}
 
 	/**
@@ -26,7 +21,13 @@ class Package {
 	 *
 	 * @return {Promise}
 	 */
-	createPackage() {
+	createPackage(directory) {
+		// if watching prebuilt item:
+		if ( directory.indexOf('prebuilt') !== -1 ) {
+			this.options.builtDirs = [directory];
+		}
+
+		this.sourceFolder = [directory];
 		this.options.output = Config.packageName;
 
 		this.startTime = process.hrtime();
