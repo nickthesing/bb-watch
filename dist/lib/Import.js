@@ -33,7 +33,7 @@ var Import = function () {
 		value: function doImport() {
 			this.startTime = process.hrtime();
 			(0, _Notify.importStart)();
-			return (0, _bbImport2.default)(Config.packageName, { port: Config.port });
+			return (0, _bbImport2.default)(Config.packageName, { port: Config.port, context: Config.portalContext });
 		}
 
 		/**
