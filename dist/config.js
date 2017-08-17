@@ -18,6 +18,13 @@ var debug = true;
 var packageName = 'package.zip';
 
 /**
+ * Default portalcontext, application context of the targeted Backbase server
+ *
+ * @type {string}
+ */
+var portalContext = 'portalserver';
+
+/**
  * Exclude exententions for watcher
  *
  * @type {array} with {strings}

@@ -13,6 +13,13 @@ const debug = true;
 const packageName = 'package.zip';
 
 /**
+ * Default portalcontext, application context of the targeted Backbase server
+ *
+ * @type {string}
+ */
+const portalContext = 'portalserver';
+
+/**
  * Exclude exententions for watcher
  *
  * @type {array} with {strings}
