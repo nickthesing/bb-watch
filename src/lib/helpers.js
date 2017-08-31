@@ -9,6 +9,17 @@ const parseHrtimeToSeconds = (hrtime) => {
 }
 
 /**
+ * Extract widget name from directory 
+ *
+ * @param {string} directory
+ * @return {string} widgetName
+ */
+const extractWidgetName = (directory) => {
+	let widgetName = /[^/]*$/.exec(directory)[0];
+	return widgetName;
+}
+
+/**
  * Return extension from string
  *
  * @param {string} fileName
@@ -31,5 +42,6 @@ const filterExtentions = (fileName) => {
 
 export {
 	filterExtentions,
-	parseHrtimeToSeconds
+	parseHrtimeToSeconds,
+	extractWidgetName
 }

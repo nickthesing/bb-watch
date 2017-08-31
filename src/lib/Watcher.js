@@ -1,7 +1,7 @@
 import watch from 'watch';
 import Verify from './Verify';
 import Notify from './Notify';
-import { filterExtentions } from './helpers';
+import { filterExtentions, extractWidgetName } from './helpers';
 import Package from './Package';
 import Import from './Import';
 import defaultConfig from '../config';
@@ -110,10 +110,13 @@ const traverseUntilModelIsFound = (dir) => {
  * @return {void}
  */
 const runPackageAndImport = widgetDirectory => {
+
+	let widgetName = extractWidgetName(widgetDirectory);
+
 	_package
 		.createPackage(widgetDirectory)
 		.then(() => _import.doImport())
-		.then(() => notifySuccess())
+		.then(() => notifySuccess(widgetName))
 		.catch(error => notifyError(error));
 }
 
@@ -132,14 +135,14 @@ const notifyError = (error) => {
  *
  * @return {vois}
  */
-const notifySuccess = () => {
+const notifySuccess = (widgetName) => {
 	let timing = [
 		_package.getTime(),
 		_import.getTime()
 	];
 
 	Notify.importEnd(...timing);
-	Notify.notify('Successfully packaged and imported');
+	Notify.notify('successfully packaged and imported', widgetName);
 }
 
 /**

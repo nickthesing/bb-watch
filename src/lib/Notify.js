@@ -97,13 +97,15 @@ const changed = (fileName) => {
  *
  * @type {what}
  */
-const notify = (msg, type = 'success') => {
+const notify = (msg, widgetName, type = 'success') => {
 	if ( ! Config.notifications ) return;
 	notifier.notify({
+		timeout: 3,
+		subtitle: widgetName,
 		title: 'Backbase Watch',
 		message: msg,
-		icon: path.join(__dirname, '../../icons/' + (type === 'success') ? 'fail.png' : 'pass.png')
-	});
+        icon: path.join(__dirname, '../../icons/' + (type === 'success') ? 'fail.png' : 'pass.png')
+    });
 }
 
 module.exports = {
