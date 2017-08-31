@@ -102,7 +102,7 @@ const notify = (msg, type = 'success') => {
 	notifier.notify({
 		title: 'Backbase Watch',
 		message: msg,
-		icon: path.join(__dirname, '../../icons/' + (type === 'success') ? 'fail.png' : 'pass.png')
+		icon: path.join(__dirname, '../icons/', (type === 'success') ? 'pass.png' : 'fail.png')
 	});
 }
 
