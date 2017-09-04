@@ -65,6 +65,16 @@ const importEnd = (packageTime, importTime) => {
 }
 
 /**
+ * Logs import error message in red
+ *
+ * @type {string} msg
+ */
+const importError = (msg) => {
+    msg = '--- Backbase Import Error: ' + msg;
+    _log(chalk.red(msg));
+}
+
+/**
  * Logs error message in red
  *
  * @type {string} msg
@@ -111,6 +121,7 @@ module.exports = {
 	offline,
 	importStart,
 	importEnd,
+    importError,
 	notify,
 	log,
 	start,
