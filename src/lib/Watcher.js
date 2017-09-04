@@ -113,8 +113,17 @@ const runPackageAndImport = widgetDirectory => {
 	_package
 		.createPackage(widgetDirectory)
 		.then(() => _import.doImport())
-		.then(() => notifySuccess())
-		.catch(error => notifyError(error));
+		.then(sequence => {
+			const errors = sequence
+				.filter(element => element.status === false)
+				.map(element => element.response);
+			if (errors.length > 0) {
+				return notifyErrors([...new Set(errors)]);
+			} else {
+				return notifySuccess();
+			}
+        })
+		.catch(error => notifyErrors([error]));
 }
 
 /**
@@ -122,15 +131,15 @@ const runPackageAndImport = widgetDirectory => {
  *
  * @return {void}
  */
-const notifyError = (error) => {
-	Notify.log(error);
+const notifyErrors = (errors) => {
+	errors.forEach(error => Notify.importError(error));
 	Notify.notify('ERROR: Importing package failed', 'fail');
 }
 
 /**
  * Notify and log success message
  *
- * @return {vois}
+ * @return {void}
  */
 const notifySuccess = () => {
 	let timing = [
